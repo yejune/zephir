@@ -9,10 +9,14 @@
 >
 
     <testsuites>
-        <testsuite name="Extension Test Suite">
+        <testsuite name="ExtensionZE2">
+            <directory suffix=".php">./unit-tests/Extension</directory>
+            <exclude>unit-tests/Extension/ZE3</exclude>
+        </testsuite>
+        <testsuite name="ExtensionZE3">
             <directory suffix=".php">./unit-tests/Extension</directory>
         </testsuite>
-        <testsuite name="Zephir Test Suite">
+        <testsuite name="Zephir">
             <directory suffix=".php">./unit-tests/Zephir</directory>
             <exclude>unit-tests/Zephir/Test/KernelTestCase.php</exclude>
         </testsuite>
