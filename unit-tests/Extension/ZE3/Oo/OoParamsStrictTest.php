@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Zephir.
@@ -11,14 +9,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Extension\Oo;
+namespace Extension\ZE3\Oo;
 
 use PHPUnit\Framework\TestCase;
 use Test\Oo\OoParams;
 
-/**
- * @group ze-3
- */
 class OoParamsStrictTest extends TestCase
 {
     public function testSetStrictAgeSuccess()
@@ -32,14 +27,8 @@ class OoParamsStrictTest extends TestCase
     {
         $t = new OoParams();
 
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $except = '\InvalidArgumentException';
-        } elseif (version_compare(PHP_VERSION, '7.2.0', '>=')) {
-            $except = '\TypeError';
-        }
-
-        if (isset($except)) {
-            $this->expectException($except);
+        if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+            $this->expectException('\TypeError');
         }
 
         $t->setStrictAge(17.0);
@@ -49,14 +38,8 @@ class OoParamsStrictTest extends TestCase
     {
         $t = new OoParams();
 
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $except = '\InvalidArgumentException';
-        } elseif (version_compare(PHP_VERSION, '7.2.0', '>=')) {
-            $except = '\TypeError';
-        }
-
-        if (isset($except)) {
-            $this->expectException($except);
+        if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+            $this->expectException('\TypeError');
         }
 
         $t->setStrictAge('17');
@@ -73,14 +56,8 @@ class OoParamsStrictTest extends TestCase
     {
         $t = new OoParams();
 
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $except = '\InvalidArgumentException';
-        } elseif (version_compare(PHP_VERSION, '7.2.0', '>=')) {
-            $except = '\TypeError';
-        }
-
-        if (isset($except)) {
-            $this->expectException($except);
+        if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+            $this->expectException('\TypeError');
         }
 
         $t->setStrictAverage('17');
@@ -96,14 +73,8 @@ class OoParamsStrictTest extends TestCase
     {
         $t = new OoParams();
 
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $except = '\InvalidArgumentException';
-        } elseif (version_compare(PHP_VERSION, '7.2.0', '>=')) {
-            $except = '\TypeError';
-        }
-
-        if (isset($except)) {
-            $this->expectException($except);
+        if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+            $this->expectException('\TypeError');
         }
 
         $t->setStrictName(1234);

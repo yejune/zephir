@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Zephir.
@@ -11,14 +9,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Extension;
+namespace Extension\ZE3;
 
 use PHPUnit\Framework\TestCase;
 use Test\Mcall;
 
-/**
- * @group ze-3
- */
 class MCallTest extends TestCase
 {
     /**
@@ -101,14 +96,8 @@ class MCallTest extends TestCase
     {
         $t = new Mcall();
 
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $except = '\InvalidArgumentException';
-        } elseif (version_compare(PHP_VERSION, '7.2.0', '>=')) {
-            $except = '\TypeError';
-        }
-
-        if (isset($except)) {
-            $this->expectException($except);
+        if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+            $this->expectException('\TypeError');
         }
 
         $t->optionalParameterBoolean('test');
