@@ -43,8 +43,9 @@ include Makefile.sfx.mk
 
 ---: ## ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 init: ## Install all necessary Tools => [./vendor/bin/*]
-	# PHP CS-Fixer
+	# PHP CS Fixer
 	$(call install_phar,php-cs-fixer.phar,https://cs.sensiolabs.org/download/php-cs-fixer-v2.phar)
+	# PHP CodeSniffer
 	$(call install_phar,phpcs.phar,https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar)
 
 ---: ## ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
