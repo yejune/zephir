@@ -21,8 +21,9 @@ CODE_SNIFF  = $(VENDOR_DIR)/phpcs
 TEST_OPTS   = --colors=always --no-coverage
 FILTER      = $(if $(filter-out $@, $(ARGS)), --filter $(filter-out $@, $(ARGS)), "")
 
-# Test Suite Selector
+# Test Suite Selector & ZendEngine Selector
 TEST_SUITE  = Extension_Php72
+ZE_BACKEND  = ZendEngine3
 
 ifeq ($(shell test "$(PHP_VERSION)" -lt "70200"; echo $$?),0)
 TEST_SUITE=Extension_Php70
@@ -30,6 +31,7 @@ endif
 
 ifeq ($(shell test "$(PHP_VERSION)" -lt "70000"; echo $$?),0)
 TEST_SUITE=Extension_Php56
+ZE_BACKEND=ZendEngine2
 endif
 
 
@@ -48,8 +50,8 @@ init: ## Install all necessary Tools => [./vendor/bin/*]
 ---: ## ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 rebuild: ## Generate and Compile Zephir Extension
 	./zephir fullclean
-	./zephir generate
-	./zephir compile
+	./zephir generate --backend=$(ZE_BACKEND)
+	./zephir compile --dev
 
 ---: ## ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 test-zephir: ## Run Zephir Tests Suit without Coverage and any Reports
