@@ -101,13 +101,12 @@ class Generator
      *
      * @return string
      */
-    protected function buildClass(ClassDefinition $class, $indent)
+    public function buildClass(ClassDefinition $class, $indent)
     {
         $source = <<<EOF
 <?php
 
 namespace {$class->getNamespace()};
-
 
 EOF;
 
