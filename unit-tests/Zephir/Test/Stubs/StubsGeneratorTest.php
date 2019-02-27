@@ -18,15 +18,17 @@ use Zephir\Stubs\Generator;
 
 class StubsGeneratorTest extends TestCase
 {
-    public function testItCanBuildClass()
+    /** @test */
+    public function itCanBuildClass()
     {
         $files = [
             './unit-tests/fixtures/class-definition-1.php',
         ];
 
         $classDefinition = new ClassDefinition('Test', 'TestStubGenerator');
-        $config = new Config();
-        $test = new Generator($files, $config);
+
+        /** @var \Zephir\Config $config */
+        $config = $this->createMock(Config::class);
 
         $expectedStub = <<<DOC
 <?php

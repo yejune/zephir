@@ -61,7 +61,7 @@ class Generator
      *
      * @param string $path
      */
-    public function generate($path)
+    protected function generate($path)
     {
         if ('tabs' === $this->config->get('indent', 'extra')) {
             $indent = "\t";
