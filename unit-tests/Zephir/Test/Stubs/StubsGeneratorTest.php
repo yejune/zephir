@@ -11,37 +11,52 @@
 
 namespace Zephir\Test\Stubs;
 
-use PHPUnit\Framework\TestCase;
 use Zephir\ClassDefinition;
 use Zephir\Config;
+use Zephir\Parser\Parser;
 use Zephir\Stubs\Generator;
+use Zephir\Test\TestCase;
 
+/**
+ * Class StubsGeneratorTest.
+ */
 class StubsGeneratorTest extends TestCase
 {
-    /** @test */
-    public function itCanBuildClass()
+    public function expectedStub()
     {
-        $files = [
-            './unit-tests/fixtures/class-definition-1.php',
-        ];
-
-        $classDefinition = new ClassDefinition('Test', 'TestStubGenerator');
-
-        /** @var \Zephir\Config $config */
-        $config = $this->createMock(Config::class);
-
-        $expectedStub = <<<DOC
+        return <<<DOC
 <?php
 
 namespace Test;
 
-class TestStubGenerator
+class BaseClassExample
 {
 
 }
 
 DOC;
+    }
 
-        $this->assertSame($expectedStub, $test->buildClass($classDefinition, "\t"));
+    /** @test */
+    public function itCanBuildClass()
+    {
+        $file = './unit-tests/fixtures/ide_stubs/BaseClassExample.zep';
+
+        $parser = new Parser();
+        $parsed = $parser->parse($file);
+
+        $classDefinition = new ClassDefinition('Test', $parsed[3]['name']);
+
+        /** @var \Zephir\Config $config */
+        $config = $this->createMock(Config::class);
+
+        $test = new Generator($parsed, $config);
+
+        // call buildClass($classDefinition, "\t")
+        $generatedStub = $this->invokeMethod($test, 'buildClass', [$classDefinition, "\t"]);
+
+        $expectedStub = $this->expectedStub();
+
+        $this->assertSame($expectedStub, $generatedStub);
     }
 }
