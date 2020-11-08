@@ -30,7 +30,7 @@
         "ext-pcre": "*",
         "ext-xml": "*",
         "ext-zlib": "*",
-        "ocramius/proxy-manager": "2.0.4",
+        "ocramius/proxy-manager": "*",
         "oneup/flysystem-bundle": "^1.14 || ^3.0",
         "symfony/cache": "3.4.*",
         "symfony/config": "3.4.*",
